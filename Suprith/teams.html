@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Work Status Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #003366;
+            color: white;
+            padding-top: 30px;
+            padding-left: 10px;
+            box-shadow: 2px 0px 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            color: white;
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            border-bottom: 1px solid #bbb;
+        }
+
+        .sidebar a:hover {
+            background-color: #005a8d;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .header img {
+            width: 120px;
+            height: auto;
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        /* Form Section */
+        .form-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .form-section h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-section label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table Section */
+        .table-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .table-section h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+
+        /* Status Color */
+        .overdue {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .completed {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .in-progress {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                box-shadow: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .form-section, .table-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <a href="#">Employee Work Status</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Header Section with Logo -->
+        <div class="header">
+            <img src="https://cdn.xingosoftware.com/elektor/images/fetch/dpr_1,w_400,h_300,c_fit/https%3A%2F%2Fwww.elektormagazine.com%2Fassets%2Fupload%2Fimages%2F42%2F20230125132211_Wurth-400x300.jpg" alt="Company Logo">
+            <h1>Employee Work Status</h1>
+        </div>
+
+        <!-- Form Section for Employee Work Status -->
+        <div class="form-section">
+            <h2>Update Work Status</h2>
+
+            <!-- New Section: Project Name Dropdown -->
+            <div>
+                <label for="project-name">Project Name:</label>
+                <select id="project-name" class="input-field">
+                    <option value="">Select a Project</option>
+                    <option value="WIRTGEN">WIRTGEN</option>
+                    <option value="AJAX">AJAX</option>
+                    <option value="BULL MACHINE">BULL MACHINE</option>
+                    <option value="PRANAV VIKAS">PRANAV VIKAS</option>
+                    <option value="ASARA">ASARA</option>
+                    <option value="BEML">BEML</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="employee-name">Employee Name:</label>
+                <select id="employee-name" class="input-field">
+                    <option value="">Select Employee</option>
+                    <option value="Suprith N J - Apprentice">Suprith N J - Apprentice</option>
+                    <option value="Mohamed Saliha M - Project Manager">Mohamed Saliha M - Project Manager</option>
+                    <option value="Bhuvana - Intern">Bhuvana - Intern</option>
+                    <option value="Dheeraj - Intern">Dheeraj - Intern</option>
+                </select>
+
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date" class="input-field">
+
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date" class="input-field">
+            </div>
+
+            <div>
+                <label for="work-status">Status:</label>
+                <select id="work-status" class="input-field">
+                    <option value="">Select a Status</option>
+                    <option value="Not Started">Not Started</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <button class="btn" onclick="checkWorkStatus()">Check Work Status</button>
+        </div>
+
+        <!-- Table Section to Display Work Logs -->
+        <div class="table-section">
+            <h3>Work Status Logs</h3>
+            <table id="work-status-table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Employee</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <script>
+        function checkWorkStatus() {
+            // Get values from the input fields
+            const projectName = document.getElementById('project-name').value;
+            const employeeName = document.getElementById('employee-name').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const workStatus = document.getElementById('work-status').value;
+
+            // Check if all fields have values
+            if (projectName && employeeName && startDate && endDate && workStatus) {
+                // Create a new row for the table
+                const table = document.getElementById('work-status-table').getElementsByTagName('tbody')[0];
+                const newRow = table.insertRow(table.rows.length);
+
+                // Insert cells for each data item
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                const cell3 = newRow.insertCell(2);
+                const cell4 = newRow.insertCell(3);
+                const cell5 = newRow.insertCell(4);
+
+                // Fill the cells with the input data
+                cell1.textContent = projectName;
+                cell2.textContent = employeeName;
+                cell3.textContent = startDate;
+                cell4.textContent = endDate;
+                cell5.textContent = workStatus;
+
+                // Apply the respective color class based on the status
+                if (workStatus === "Not Started") {
+                    cell5.classList.add("overdue");
+                } else if (workStatus === "In Progress") {
+                    cell5.classList.add("in-progress");
+                } else if (workStatus === "Completed") {
+                    cell5.classList.add("completed");
+                }
+
+                // Clear the input fields after submission
+                document.getElementById('project-name').value = ''; // Reset to default value
+                document.getElementById('employee-name').value = ''; // Reset to default value
+                document.getElementById('start-date').value = ''; // Reset to default value
+                document.getElementById('end-date').value = ''; // Reset to default value
+                document.getElementById('work-status').value = ''; // Reset to default value
+            } else {
+                // Alert if any field is empty
+                alert('Please fill in all fields!');
+            }
+        }
+    </script>
+
+</body>
+</html>
+function checkWorkStatus() {
+    // Get values from the input fields
+    const projectName = document.getElementById('project-name').value;
+    const employeeName = document.getElementById('employee-name').value;
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+    const workStatus = document.getElementById('work-status').value;
+
+    // Check if all fields have values
+    if (projectName && employeeName && startDate && endDate && workStatus) {
+        // Create a new row for the table
+        const table = document.getElementById('work-status-table').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow(table.rows.length);
+
+        // Insert cells for each data item
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+        const cell5 = newRow.insertCell(4);
+
+        // Fill the cells with the input data
+        cell1.textContent = projectName;
+        cell2.textContent = employeeName;
+        cell3.textContent = startDate;
+        cell4.textContent = endDate;
+        cell5.textContent = workStatus;
+
+        // Get today's date for comparison
+        const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+        // Check if the end date is overdue
+        const isOverdue = endDate < today; // If the end date is less than today's date, it's overdue
+
+        // Apply the respective color class based on the status
+        if (workStatus === "Not Started") {
+            cell5.classList.add("overdue");
+        } else if (workStatus === "In Progress") {
+            cell5.classList.add("in-progress");
+        } else if (workStatus === "Completed") {
+            cell5.classList.add("completed");
+        }
+
+        // If the task is overdue, show a caution sign and apply a red background
+        if (isOverdue) {
+            cell5.innerHTML = "⚠️ Overdue"; // Add the caution sign
+            cell5.classList.add("overdue");
+        }
+
+        // Clear the input fields after submission
+        document.getElementById('project-name').value = ''; // Reset to default value
+        document.getElementById('employee-name').value = ''; // Reset to default value
+        document.getElementById('start-date').value = ''; // Reset to default value
+        document.getElementById('end-date').value = ''; // Reset to default value
+        document.getElementById('work-status').value = ''; // Reset to default value
+    } else {
+        // Alert if any field is empty
+        alert('Please fill in all fields!');
+    }
+}

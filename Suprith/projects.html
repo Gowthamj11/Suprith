@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Status Log Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #003366;
+            color: white;
+            padding-top: 30px;
+            padding-left: 10px;
+            box-shadow: 2px 0px 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            color: white;
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            border-bottom: 1px solid #bbb;
+        }
+
+        .sidebar a:hover {
+            background-color: #005a8d;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .header img {
+            width: 120px;
+            height: auto;
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        /* Form Section */
+        .form-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .form-section h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-section label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table Section */
+        .table-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .table-section h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+
+        /* Status Color */
+        .overdue {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .completed {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .in-progress {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                box-shadow: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .form-section, .table-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <a href="#">Project Status</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Header Section with Logo -->
+        <div class="header">
+            <img src="https://cdn.xingosoftware.com/elektor/images/fetch/dpr_1,w_400,h_300,c_fit/https%3A%2F%2Fwww.elektormagazine.com%2Fassets%2Fupload%2Fimages%2F42%2F20230125132211_Wurth-400x300.jpg" alt="Company Logo">
+            <h1>Project Status Log</h1>
+        </div>
+
+        <!-- Form Section for Adding Project Status -->
+        <div class="form-section">
+            <h2>Update Project Status</h2>
+            <label for="project-name">Project Name:</label>
+            <select id="project-name" class="input-field">
+                <option value="">Select a Project</option>
+                <option value="WIRTGEN">WIRTGEN</option>
+                <option value="AJAX">AJAX</option>
+                <option value="BULL MACHINE">BULL MACHINE</option>
+                <option value="PRANAV VIKAS">PRANAV VIKAS</option>
+                <option value="ASARA">ASARA</option>
+                <option value="BEML">BEML</option>
+            </select>
+
+            <label for="response">Response:</label>
+            <select id="response" class="input-field">
+                <option value="">Select a Response</option>
+                <option value="Suprith N J - Apprentice">Suprith N J - Apprentice</option>
+                <option value="Mohamed Saliha M - Project Manager">Mohamed Saliha M - Project Manager</option>
+                <option value="Bhuvana - Intern">Bhuvana - Intern</option>
+                <option value="Dheeraj - Intern">Dheeraj - Intern</option>
+            </select>
+
+            <label for="work-status">Status:</label>
+            <select id="work-status" class="input-field">
+                <option value="">Select a Status</option>
+                <option value="Not Started">Not Started</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+            <button class="btn" onclick="checkProjectStatus()">Check Project Status</button>
+        </div>
+
+        <!-- Table Section to Display Project Logs -->
+        <div class="table-section">
+            <h3>Project Status Logs</h3>
+            <table id="status-log-table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Response</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <script>
+        function checkProjectStatus() {
+            // Get values from the input fields
+            const projectName = document.getElementById('project-name').value;
+            const response = document.getElementById('response').value;
+            const workStatus = document.getElementById('work-status').value;
+
+            // Check if all fields have values
+            if (projectName && response && workStatus) {
+                // Create a new row for the table
+                const table = document.getElementById('status-log-table').getElementsByTagName('tbody')[0];
+                const newRow = table.insertRow(table.rows.length);
+
+                // Insert cells for each data item
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                const cell3 = newRow.insertCell(2);
+
+                // Fill the cells with the input data
+                cell1.textContent = projectName;
+                cell2.textContent = response;
+                cell3.textContent = workStatus;
+
+                // Apply the respective color class based on the status
+                if (workStatus === "Not Started") {
+                    cell3.classList.add("overdue");
+                } else if (workStatus === "In Progress") {
+                    cell3.classList.add("in-progress");
+                } else if (workStatus === "Completed") {
+                    cell3.classList.add("completed");
+                }
+
+                // Clear the input fields after submission
+                document.getElementById('project-name').value = ''; // Reset to default value
